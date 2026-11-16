@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+!.env.example
+node_modules
+__pycache__
+*.pyc
+.venv
+venv
+bin
+obj
+coverage
+*.log
+.DS_Store
