@@ -127,3 +127,67 @@ The pipeline includes:
 ## GitHub Repository
 
 https://github.com/Muna-Com/example-voting-app
+
+
+## Kubernetes Deployment
+
+The application is deployed on Kubernetes using Minikube.
+
+### Start the cluster
+
+```bash
+minikube start --driver=docker
+```
+
+### Deploy the application
+
+```bash
+minikube kubectl -- apply -f k8s/app.yaml
+```
+
+### Verify deployment
+
+```bash
+minikube kubectl -- get pods
+minikube kubectl -- get services
+```
+
+All five application components should be running: vote, result, worker, Redis, and PostgreSQL.
+
+### Access the applications
+
+Run these commands in separate terminals:
+
+```bash
+minikube kubectl -- port-forward svc/vote 8080:80
+```
+
+```bash
+minikube kubectl -- port-forward svc/result 8081:80
+```
+
+- Voting: http://localhost:8080
+- Results: http://localhost:8081
+
+## CI/CD Pipeline
+
+GitHub Actions automates the build and publishing of Docker images for the vote, result, and worker services.
+
+The pipeline includes:
+- Automated Docker image builds.
+- Publishing images to GitHub Container Registry (GHCR).
+- Trivy filesystem security scanning.
+
+## Technologies Used
+
+- Docker and Docker Compose
+- Kubernetes and Minikube
+- Python, Node.js, and .NET
+- Redis and PostgreSQL
+- GitHub Actions
+- Trivy
+- GitHub Container Registry
+
+## GitHub Repository
+
+https://github.com/Muna-Com/example-voting-app
